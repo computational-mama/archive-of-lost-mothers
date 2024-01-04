@@ -3,3 +3,4 @@ node_modules
 functions
 public/.env
 gpt.js
+server.js

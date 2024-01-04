@@ -17,19 +17,18 @@ var image_link;
 var story_output;
 var instruction;
 
-try {  
+try {
   // Intitializing the readFileLines with filename
-  var promptGTP3 = fs.readFileSync('gptprompt.txt', 'utf8');
+  var promptGTP3 = fs.readFileSync("gptprompt.txt", "utf8");
 
   // Printing the response
-  // console.log(promptGTP3.toString());    
-}catch(e) {
-  // Printing error 
-  console.log('Error:', e.stack);
+  // console.log(promptGTP3.toString());
+} catch (e) {
+  // Printing error
+  console.log("Error:", e.stack);
 }
 // const p1 = "cat ears"
 // const p2 = "fishing tank"
-
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -49,18 +48,20 @@ appExpress.post("/api", (request, response, next) => {
   // console.log(prompt1, prompt2);
   // next();
   var outputimage = callApi(prompt1, prompt2);
-  var gptResponse
-  var gptCall = callGPT3(prompt1, prompt2).then((dataprompt) => {
-    gptResponse = dataprompt.output.output_text.text_davinci_003[0];
-  }).catch((err) => {
-    console.error(err);
-  });
+  var gptResponse;
+  var gptCall = callGPT3(prompt1, prompt2)
+    .then((dataprompt) => {
+      gptResponse = dataprompt.output.output_text.gpt_4_turbo[0];
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 
   // console.log("gptCall: "+gptResponse)
   var fullprompt =
     "an archival photograph of a tired ((young)) indian (((mother))) with" +
     prompt1 +
-    ", in the background there is" +
+    ", in the background there is a  mid-century " +
     "(" +
     prompt2 +
     ")" +
@@ -68,53 +69,59 @@ appExpress.post("/api", (request, response, next) => {
   // console.log(outputimage);
   outputimage
     .then((data) => {
-      var JSONdata =data.output.output_images.protogen_5_3[0];
+      var JSONdata = data.output.output_images.dall_e_3[0];
       writeNewPost(fullprompt, JSONdata, gptResponse);
       // console.log(fullprompt, JSONdata);
       // console.log(story_output)
       // response.send(gptResponse)
       response.send({
-        imagelink:JSONdata,
-        caption: gptResponse
+        imagelink: JSONdata,
+        caption: gptResponse,
       });
       return;
     })
     .catch((err) => {
       console.error(err);
     });
-
 });
 // Server setup
 appExpress.listen(port, () => {
   console.log("server running");
 });
 
-async function callGPT3(p1,p2) {
-  const instruction = "Create one more story like these above make sure to use smaller Indian cities and villages in the geography. Story must include an extraordinary human evolution with "+p1+  " during, before or after pregnancy and it must include one sentence about "+p2+ ". Do not write stories about other medical ailments. Story can be very negative or very positive."
-  const response = await fetch("https://api.gooey.ai/v2/CompareLLM/?run_id=r9k5ogvp", {
+async function callGPT3(p1, p2) {
+  const instruction =
+    "Create one more story like these above make sure to use smaller Indian cities and villages in the geography. Story must include an extraordinary human evolution with " +
+    p1 +
+    " during, before or after pregnancy and it must include one sentence about " +
+    p2 +
+    ". Do not write stories about other medical ailments. Story should NOT be positive.";
+  const response = await fetch("https://api.gooey.ai/v2/CompareLLM/", {
     method: "POST",
     headers: {
-        "Authorization": "Bearer "+ process.env.GOOEY_API_KEY,
-        "Content-Type": "application/json",
+      Authorization: "Bearer " + process.env.GOOEY_API_KEY,
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      "input_prompt": promptGTP3.toString() + instruction,
-      "selected_models": [
-          "text_davinci_003"
-          ],
-      "avoid_repetition": true,
-
+      input_prompt: promptGTP3.toString() + instruction,
+      selected_models: ["gpt_4_turbo"],
+      avoid_repetition: true,
+      num_outputs: 1,
+      quality: 1,
+      max_tokens: 500,
+      sampling_temperature: 0.3,
+      variables: null,
     }),
   });
 
   const dataprompt = await response.json();
   // const story_output =  dataprompt.output.output_text.text_davinci_003[0]
   // console.log(JSON.stringify(story_output));
-  return dataprompt
+  return dataprompt;
 }
 
 async function callApi(p1, p2) {
-  const response = await fetch("https://api.gooey.ai/v2/CompareText2Img/?run_id=hum5m1hu", {
+  const response = await fetch("https://api.gooey.ai/v2/CompareText2Img/", {
     method: "POST",
     headers: {
       Authorization: "Bearer " + process.env.GOOEY_API_KEY,
@@ -122,9 +129,19 @@ async function callApi(p1, p2) {
     },
     body: JSON.stringify({
       seed: getRandomInt(3008484884),
-      selected_models: [
-        "protogen_5_3"
-        ],
+      output_width: 1024,
+      output_height: 1024,
+      num_outputs: 1,
+      quality: 140,
+      dall_e_3_quality: "standard",
+      dall_e_3_style: "vivid",
+      guidance_scale: 7,
+      seed: 2746317213,
+      sd_2_upscaling: false,
+      selected_models: ["dall_e_3"],
+      scheduler: null,
+      edit_instruction: null,
+      image_guidance_scale: 1.2,
       text_prompt:
         "an archival photograph of a tired ((young)) indian (((mother))) with (((" +
         p1 +
@@ -136,11 +153,10 @@ async function callApi(p1, p2) {
   });
   // console.log("an archival photograph of a tired ((young)) indian (((mother))) with" + p1 +", in the background there is" + +p2 + "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print")
   const data = await response.json();
-  image_link = data.output.output_images.protogen_5_3[0];
+  image_link = data.output.output_images.dall_e_3[0];
   // console.log(response.status, image_link);
   return data;
 }
-
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -223,3 +239,4 @@ appExpress.post("/gallery", (req, res, next) => {
   }
   getList();
 });
+

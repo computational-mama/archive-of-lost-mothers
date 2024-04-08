@@ -13,6 +13,7 @@ appExpress.use(express.json());
 // For parsing application/x-www-form-urlencoded
 appExpress.use(express.urlencoded({ extended: true }));
 
+
 var image_link;
 var story_output;
 var instruction;
@@ -143,11 +144,11 @@ async function callApi(p1, p2) {
       edit_instruction: null,
       image_guidance_scale: 1.2,
       text_prompt:
-        "an archival photograph of a tired ((young)) indian (((mother))) with (((" +
+        "an archival photograph of a tired young indian mother with " +
         p1 +
-        "))), in the background there is ((" +
+        ", in the background there is " +
         p2 +
-        ")) inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print",
+        "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print",
       negative_prompt: "out of frame, old, older woman, modelshoot",
     }),
   });

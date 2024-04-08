@@ -5,13 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" type="text/css" href="/style1.css" /> -->
-    <link rel="stylesheet" type="text/css" href="/style2.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/style2.css" /> -->
+      <link href="./output.css" rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Titillium+Web:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
+    <link href= 
+"https://fonts.googleapis.com/css2?family=Lato&family=Archivo:ital,wght@0,100..900;1,100..900&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300..700&family=Ojuju:wght@200..800&display=swap"
+        rel="stylesheet"> 
+        <style>
+          #lds-ellipsis {
+    display: none;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  #lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #333;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  #lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  #lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  #lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  #lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+        </style>
     <title>ARCHIVE OF LOST MOTHERS</title>
     <link
       rel="apple-touch-icon"
@@ -32,30 +90,45 @@
     />
     <link rel="manifest" href="assets/site.webmanifest" />
   </head>
-  <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
-    <header>
+  <body class="">
+    <!-- <a href="#main" class="skip-link">Skip to main content</a> -->
+        <nav class="bg-black  pt-3">
+      <ul class="flex flex-row px-4 py-2 mx-auto space-x-4 font-space text-sm">
+        <!-- <li><a href="#about">About</a></li> -->
+        <li><a class="px-3 py-1 border text-white border-white rounded-xl hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700" href="/gallery.html">Gallery</a></li>
+        <li><a class="px-3 py-1 border text-white border-white rounded-xl hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700" href="/facility.html">Facility</a></li>
+        <li><a class="px-3 py-1 border text-white border-white rounded-xl hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700" href="/about.html">About</a></li>
+      </ul>
+    
+    </nav>
+    <header class="font-oju font-bold h-lvh w-full flex justify-center bg-black  text-white">
       <div class="container">
-        <h1>ARCHIVE OF LOST MOTHERS</h1>
+        <h1 class="pt-40 md:pt-0 lg:pt-0 xl:pt-0 2xl:pt-0 text-[5rem] lg:text-[11rem] xl:text-[11rem] 2xl:text-[11rem] text-center m-auto content-center leading-[5rem] lg:leading-[11rem] xl:leading-[11rem] 2xl:leading-[11rem]">
+         ARCHIVE <br>
+         OF<br>
+         LOST<br>
+          MOTHERS<br>
+        </h1>
         <!-- <h2>SUBTITLE about the project</h2> -->
         
       
-        <article id="about">
-            <p>An archive emerges of a secret scientific society that suppressed radical new birthing, new womxn beings developing limbs and post human babies. They were hidden in a secret facility so their birthing prowess could be watched and monitored. Their bodies, their offspring and their energies deleted from the popular imagination.
+      </header>
+          <main id="main" class="w-full lg:w-2/3 xl:w-2/3 2xl:w-2/3 mx-auto" tabIndex="-1">
+
+        <article id="about" class="px-6 py-8 space-y-4">
+            <p class="font-space text-2xl" >An archive emerges of a secret scientific society that suppressed radical new birthing, new womxn beings developing limbs and post human babies. They were hidden in a secret facility so their birthing prowess could be watched and monitored. Their bodies, their offspring and their energies deleted from the popular imagination.
             </p>
             <p>-----</p>
-              <h2>INSTRUCTIONS</h2>
-              <p id="instructions">The archive has a lot of images, you can find images by trying some evolutionary keywords (ex: with tentacled arms) and some medical contexts (ex: glass birthing pods). You need to add keywords in both input fields for the search to throw up an image.</p>
+              <h2 class="font-space text-bold text-5xl">INSTRUCTIONS</h2>
+              <p id="instructions" class="font-space ">The archive has a lot of images, you can find images by trying some evolutionary keywords (ex: with tentacled arms) and some medical contexts (ex: glass birthing pods). You need to add keywords in both input fields for the search to throw up an image.</p>
        </article>
       </div>
-    </header>
 
-    <main id="main" tabIndex="-1">
 
-      <div class="container">
+      <div class="container font-space px-5">
         <article id="promptform">
             <div class="container">
-                <h3>FIND AN IMAGE</h3>
+                <h3 class="font-space text-bold text-3xl pb-4">FIND AN IMAGE</h3>
                 <label
                 >an archival photograph of a patient
                 with</label
@@ -64,16 +137,18 @@
                 type="text"
                 placeholder="tentacles/cat ears/robotic arms"
                 id="prompt1"
+                class="border border-gray-700 rounded-md px-2"
               />
               <label>, in the background there is a </label>
               <input
                 type="text"
                 placeholder="glass birthing pod/medical equipment"
                 id="prompt2"
+                class="border border-gray-700 rounded-md px-2"
               />
               <label>inside a bombay hospital</label><br />
               <br />
-              <button class="link-allstyles" onclick="submitMe()" id="submit">
+              <button class="bg-black text-white px-5 py-4 mb-3 focus:outline-none focus:ring focus:ring-gray-700 rounded-lg" onclick="submitMe()" id="submit">
                 Find
               </button>
               <br>
@@ -94,17 +169,10 @@
         </article>
       </div>
     </main>
-    <nav>
-      <ul>
-        <!-- <li><a href="#about">About</a></li> -->
-        <li><a href="/gallery.html">Gallery</a></li>
-        <li><a href="/facility.html">Facility</a></li>
-      </ul>
-    
-    </nav>
-    <div class="page-footer">
-      <p  class="footer">Project by <a href="https://computationalmama.xyz" target="_blank">Computational Mama</a> <br>
-        API credits supported by <a href="https://gooey.ai" target="_blank">gooey.ai</a></p>
+
+    <div class="text-sm bg-black text-white font-space flex flex-col  justify-center py-3">
+      <p  class="footer px-2 py-3 text-center content-center">project by <a class="underline underline-offset-2" href="https://computationalmama.xyz" target="_blank">Computational Mama </a> &bull;
+        API credits supported by <a class="underline underline-offset-2" href="https://gooey.ai" target="_blank">gooey.ai</a> &bull; updated April 2024</p>
   </div>
     <script src="script.js"></script>
   </body>

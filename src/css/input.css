@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+#imagepush {
+  @apply py-8 px-4 space-y-4
+    }
+  
+#addtext {
+  @apply font-archivo text-sm pt-4
+}
+
+.galleryImg {
+  @apply object-contain 
+}
+
+.galleryCap{
+  @apply  text-xs text-white truncate pt-3
+}
+
+.imageDiv{
+  @apply w-full md:w-1/3 lg:w-1/5 xl:w-1/5 2xl:w-1/5 p-6
+}
+

@@ -33,13 +33,13 @@
         <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
    
   </head>
-  <body>
+  <body class="">
        <nav class="bg-black  pt-3">
       <ul class="flex flex-row px-4 py-2 m-auto space-x-2 lg:space-x-4 xl:space-x-4 2xl:space-x-4">
         <!-- <li><a href="#about">About</a></li> -->
         <li class="content-center  hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700 text-white "><a class="font-oju font-bold text-lg lg:text-3xl xl:text-3xl 2xl:text-3xl  uppercase" href="/index.html">Archive of Lost Mothers </a></li>
         <li class="content-center  hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700 text-white "><a class="font-space  t text-sm lg:text-xl xl:text-xl 2xl:text-xl  " href="/facility.html">Facility</a></li>
-        <li class="content-center  hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700 text-white "><a class="font-space text-sm lg:text-xl xl:text-xl 2xl:text-xl  " href="/about.html">About</a></li>
+        <li class="content-center  hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700 text-white "><a class="font-space text-sm lg:text-xl xl:text-xl 2xl:text-xl  " href="/gallery.html">Gallery</a></li>
       </ul>
     
     </nav>
@@ -47,38 +47,30 @@
  <header class="w-full flex justify-center bg-black  text-white p-4 ">
       <div class="container  mx-8">
         <h1 class="font-oju font-bold text-5xl lg:text-8xl xl:text-9xl 2xl:text-9xl  content-center py-3">
-       GALLERY
+       ABOUT
         </h1>
         <!-- <h2>SUBTITLE about the project</h2> -->  
         
           <p class="font-space">It was observed that many of the images were left with short details annotated by the medical teams.</p>
         <p  class="font-space">Click on the images to read the medical notes.</p>
       </header>
-    <main id="main" tabIndex="-1" class="bg-black m-auto">
-     
-      <section id="gallery" class="">
-        <div id="gallerypush" class="flex flex-row flex-wrap   mx-8">
-    
-        </div>
-        <div id="myModal" class="modal hidden h-screen w-full p-4 fixed overflow-auto top-0 bg-black">
 
-          <!-- The Close Button -->
-          <span class="close text-white text-3xl">&times;</span>
-        
-          <!-- Modal Content (The Image) -->
-          <img class="m-auto md:w-1/2 lg:w-1/2 xl:w-3/4 2xl:w-3/4" id="img01">
-        
-          <!-- Modal Caption (Image Text) -->
-          <div id="caption" class="text-white font-space text-sm md:w-1/2 lg:w-1/2 xl:w-3/4 2xl:w-3/4 pt-4 m-auto"></div>
-        </div>
-      </section>
- 
+    <main id="main" tabIndex="-1" class="bg-black">
+        <article class="container mx-auto">
+        <section id="imagesfacility" class="container flex flex-row flex-wrap">
+                   <p class="font-space">It was observed that many of the images were left with short details annotated by the medical teams.</p>
+          <p class="font-space">It was observed that many of the images were left with short details annotated by the medical teams.</p>
+
+        </section>
+    </article>
     </main>
-    
+   
+    </nav>
  <div class="text-sm bg-black text-white font-space flex flex-col  justify-center py-3">
       <p  class="footer px-2 py-3 text-center content-center">project by <a class="underline underline-offset-2" href="https://computationalmama.xyz" target="_blank">Computational Mama </a> &bull;
         API credits supported by <a class="underline underline-offset-2" href="https://gooey.ai" target="_blank">gooey.ai</a> &bull; updated April 2024</p>
   </div>
-    <script src="gallery.js"></script>
-  </body>
+    <!-- <script src="gallery.js"></script> -->
+</body>
+
 </html>

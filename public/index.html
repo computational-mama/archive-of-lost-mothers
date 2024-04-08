@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" type="text/css" href="/style1.css" /> -->
-    <link rel="stylesheet" type="text/css" href="/style2.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/style2.css" /> -->
+      <link href="./output.css" rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Titillium+Web:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
+    <link href= 
+"https://fonts.googleapis.com/css2?family=Lato&family=Archivo:ital,wght@0,100..900;1,100..900&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300..700&family=Ojuju:wght@200..800&display=swap"
+        rel="stylesheet"> 
     <title>ARCHIVE OF LOST MOTHERS</title>
     <link
       rel="apple-touch-icon"
@@ -32,30 +33,35 @@
     />
     <link rel="manifest" href="assets/site.webmanifest" />
   </head>
-  <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
-    <header>
+  <body class="">
+    <!-- <a href="#main" class="skip-link">Skip to main content</a> -->
+    <header class="font-oju font-bold h-lvh w-full flex justify-center bg-black  text-white">
       <div class="container">
-        <h1>ARCHIVE OF LOST MOTHERS</h1>
+        <h1 class="pt-48 xl:pt-56 2xl:pt-56 text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl text-center m-auto content-center tracking-tight leading-[4.5rem]">
+         ARCHIVE <br>
+         OF<br>
+         LOST<br>
+          MOTHERS
+        </h1>
         <!-- <h2>SUBTITLE about the project</h2> -->
         
       
-        <article id="about">
-            <p>An archive emerges of a secret scientific society that suppressed radical new birthing, new womxn beings developing limbs and post human babies. They were hidden in a secret facility so their birthing prowess could be watched and monitored. Their bodies, their offspring and their energies deleted from the popular imagination.
+      </header>
+        <article id="about" class="p-5 space-y-4">
+            <p class="font-space text-2xl" >An archive emerges of a secret scientific society that suppressed radical new birthing, new womxn beings developing limbs and post human babies. They were hidden in a secret facility so their birthing prowess could be watched and monitored. Their bodies, their offspring and their energies deleted from the popular imagination.
             </p>
             <p>-----</p>
-              <h2>INSTRUCTIONS</h2>
-              <p id="instructions">The archive has a lot of images, you can find images by trying some evolutionary keywords (ex: with tentacled arms) and some medical contexts (ex: glass birthing pods). You need to add keywords in both input fields for the search to throw up an image.</p>
+              <h2 class="font-space text-bold text-5xl">INSTRUCTIONS</h2>
+              <p id="instructions" class="font-space ">The archive has a lot of images, you can find images by trying some evolutionary keywords (ex: with tentacled arms) and some medical contexts (ex: glass birthing pods). You need to add keywords in both input fields for the search to throw up an image.</p>
        </article>
       </div>
-    </header>
 
-    <main id="main" tabIndex="-1">
+    <main id="main" class="py-8" tabIndex="-1">
 
-      <div class="container">
+      <div class="container font-space px-5">
         <article id="promptform">
             <div class="container">
-                <h3>FIND AN IMAGE</h3>
+                <h3 class="font-space text-bold text-3xl">FIND AN IMAGE</h3>
                 <label
                 >an archival photograph of a patient
                 with</label
@@ -64,16 +70,18 @@
                 type="text"
                 placeholder="tentacles/cat ears/robotic arms"
                 id="prompt1"
+                class="border border-gray-700 rounded-md px-2"
               />
               <label>, in the background there is a </label>
               <input
                 type="text"
                 placeholder="glass birthing pod/medical equipment"
                 id="prompt2"
+                class="border border-gray-700 rounded-md px-2"
               />
               <label>inside a bombay hospital</label><br />
               <br />
-              <button class="link-allstyles" onclick="submitMe()" id="submit">
+              <button class="bg-black text-white px-5 py-4 focus:outline-none focus:ring focus:ring-gray-700 rounded-lg" onclick="submitMe()" id="submit">
                 Find
               </button>
               <br>

@@ -14,13 +14,23 @@ fetch("/gallery", options)
     const obj = JSON.parse(data);
     Object.keys(obj).forEach((key) => {
       if (obj[key].caption !== "test" && obj[key].caption !== undefined) {
+        let imageDiv = document.createElement("div")
+        imageDiv.classList.add("imageDiv")
         let link = obj[key].link;
         let c_data = link.replace(/"/g, "");
         var aimg = document.createElement("img");
         aimg.src = c_data;
-        document.getElementById("gallerypush").appendChild(aimg);
+        aimg.classList.add("galleryImg")
+        imageDiv.appendChild(aimg)
 
         let caption = obj[key].caption;
+        var acap = document.createElement("p");
+        acap.innerHTML = caption
+        acap.classList.add("galleryCap")
+        imageDiv.appendChild(acap);
+
+        document.getElementById("gallerypush").appendChild(imageDiv);
+
         // // let cap_data = caption.replace(/"/g, '');
         // var acap = document.createElement("p");
         // console.log(caption)

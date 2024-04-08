@@ -13,6 +13,63 @@
     <link href= 
 "https://fonts.googleapis.com/css2?family=Lato&family=Archivo:ital,wght@0,100..900;1,100..900&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300..700&family=Ojuju:wght@200..800&display=swap"
         rel="stylesheet"> 
+        <style>
+          #lds-ellipsis {
+    display: none;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  #lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #333;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  #lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  #lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  #lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  #lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+        </style>
     <title>ARCHIVE OF LOST MOTHERS</title>
     <link
       rel="apple-touch-icon"
@@ -35,17 +92,18 @@
   </head>
   <body class="">
     <!-- <a href="#main" class="skip-link">Skip to main content</a> -->
-        <nav>
-      <ul>
+        <nav class="bg-black  pt-3">
+      <ul class="flex flex-row px-4 py-2 mx-auto space-x-4 font-space text-sm">
         <!-- <li><a href="#about">About</a></li> -->
-        <li><a href="/gallery.html">Gallery</a></li>
-        <li><a href="/facility.html">Facility</a></li>
+        <li><a class="px-3 py-1 border text-white border-white rounded-xl hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700" href="/gallery.html">Gallery</a></li>
+        <li><a class="px-3 py-1 border text-white border-white rounded-xl hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700" href="/facility.html">Facility</a></li>
+        <li><a class="px-3 py-1 border text-white border-white rounded-xl hover:text-black hover:bg-white focus:outline-none focus:ring focus:ring-gray-700" href="/about.html">About</a></li>
       </ul>
     
     </nav>
     <header class="font-oju font-bold h-lvh w-full flex justify-center bg-black  text-white">
       <div class="container">
-        <h1 class="pt-48 xl:pt-56 2xl:pt-56 text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl text-center m-auto content-center leading-[4.5rem]">
+        <h1 class="pt-48 text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl text-center m-auto content-center leading-[4.5rem]">
          ARCHIVE <br>
          OF<br>
          LOST<br>
@@ -55,7 +113,9 @@
         
       
       </header>
-        <article id="about" class="p-5 space-y-4">
+          <main id="main" class="w-full lg:w-2/3 xl:w-2/3 2xl:w-2/3 mx-auto" tabIndex="-1">
+
+        <article id="about" class="px-6 py-8 space-y-4">
             <p class="font-space text-2xl" >An archive emerges of a secret scientific society that suppressed radical new birthing, new womxn beings developing limbs and post human babies. They were hidden in a secret facility so their birthing prowess could be watched and monitored. Their bodies, their offspring and their energies deleted from the popular imagination.
             </p>
             <p>-----</p>
@@ -64,12 +124,11 @@
        </article>
       </div>
 
-    <main id="main" class="py-8" tabIndex="-1">
 
       <div class="container font-space px-5">
         <article id="promptform">
             <div class="container">
-                <h3 class="font-space text-bold text-3xl">FIND AN IMAGE</h3>
+                <h3 class="font-space text-bold text-3xl pb-4">FIND AN IMAGE</h3>
                 <label
                 >an archival photograph of a patient
                 with</label

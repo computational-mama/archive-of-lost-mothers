@@ -1,10 +1,12 @@
 import fetch from "node-fetch";
 import fs from "fs";
-
+import OpenAI from "openai";
 import express from "express";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 // import * as "gpt.js"
 dotenv.config();
+const openai = new OpenAI({apiKey:process.env.OPENAPI_KEY});
+
 const port = process.env.PORT || "8080";
 var appExpress = express();
 // For parsing application/json
@@ -20,7 +22,7 @@ var instruction;
 
 try {
   // Intitializing the readFileLines with filename
-  var promptGTP3 = fs.readFileSync("gptprompt.txt", "utf8");
+  var story = fs.readFileSync("gptprompt.txt", "utf8");
 
   // Printing the response
   // console.log(promptGTP3.toString());
@@ -48,11 +50,11 @@ appExpress.post("/api", (request, response, next) => {
   let prompt2 = text2img.p2;
   // console.log(prompt1, prompt2);
   // next();
-  var outputimage = callApi(prompt1, prompt2);
+  var outputimage = image(prompt1, prompt2);
   var gptResponse;
-  var gptCall = callGPT3(prompt1, prompt2)
+  var gptCall = main(prompt1, prompt2)
     .then((dataprompt) => {
-      gptResponse = dataprompt.output.output_text.gpt_4_turbo[0];
+      gptResponse = dataprompt
     })
     .catch((err) => {
       console.error(err);
@@ -70,7 +72,7 @@ appExpress.post("/api", (request, response, next) => {
   // console.log(outputimage);
   outputimage
     .then((data) => {
-      var JSONdata = data.output.output_images.dall_e_3[0];
+      var JSONdata = data
       writeNewPost(fullprompt, JSONdata, gptResponse);
       // console.log(fullprompt, JSONdata);
       // console.log(story_output)
@@ -90,74 +92,31 @@ appExpress.listen(port, () => {
   console.log("server running");
 });
 
-async function callGPT3(p1, p2) {
-  const instruction =
-    "Create one more story like these above make sure to use smaller Indian cities and villages in the geography. Story must include an extraordinary human evolution with " +
-    p1 +
-    " during, before or after pregnancy and it must include one sentence about " +
-    p2 +
-    ". Do not write stories about other medical ailments. Story should NOT be positive.";
-  const response = await fetch("https://api.gooey.ai/v2/CompareLLM/", {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + process.env.GOOEY_API_KEY,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      input_prompt: promptGTP3.toString() + instruction,
-      selected_models: ["gpt_4_turbo"],
-      avoid_repetition: true,
-      num_outputs: 1,
-      quality: 1,
-      max_tokens: 500,
-      sampling_temperature: 0.3,
-      variables: null,
-    }),
+
+
+async function main(p1,p2) {
+  const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: story + "\n\n---\n\nCreate one more story like these above make sure to use smaller Indian cities and villages in the geography. Story must include an extraordinary human evolution with" +  p1 + " during, before or after pregnancy and it must include one sentence about" +  p2   +  ".Do not write stories about other medical ailments.Story should NOT be positive."}],
+    model: "gpt-4",
   });
 
-  const dataprompt = await response.json();
-  // const story_output =  dataprompt.output.output_text.text_davinci_003[0]
-  // console.log(JSON.stringify(story_output));
-  return dataprompt;
+  console.log(completion.choices[0].message.content);
+  const dataOPENAI = completion.choices[0].message.content
+  return dataOPENAI
 }
 
-async function callApi(p1, p2) {
-  const response = await fetch("https://api.gooey.ai/v2/CompareText2Img/", {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + process.env.GOOEY_API_KEY,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      seed: getRandomInt(3008484884),
-      output_width: 1024,
-      output_height: 1024,
-      num_outputs: 1,
-      quality: 140,
-      dall_e_3_quality: "standard",
-      dall_e_3_style: "vivid",
-      guidance_scale: 7,
-      seed: 2746317213,
-      sd_2_upscaling: false,
-      selected_models: ["dall_e_3"],
-      scheduler: null,
-      edit_instruction: null,
-      image_guidance_scale: 1.2,
-      text_prompt:
-        "an archival photograph of a tired young indian mother with " +
-        p1 +
-        ", in the background there is " +
-        p2 +
-        "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print",
-      negative_prompt: "out of frame, old, older woman, modelshoot",
-    }),
-  });
-  // console.log("an archival photograph of a tired ((young)) indian (((mother))) with" + p1 +", in the background there is" + +p2 + "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print")
-  const data = await response.json();
-  image_link = data.output.output_images.dall_e_3[0];
-  // console.log(response.status, image_link);
-  return data;
+async function image(p1,p2) {
+  const image = await openai.images.generate({ model: "dall-e-3", prompt: "an archival photograph of a tired young indian mother with " +
+  p1 +
+  ", in the background there is " +
+  p2 +
+  "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print+", });
+
+  console.log(image.data[0].url);
+  const imgOPENAI = image.data[0].url
+  return imgOPENAI
 }
+image();
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";

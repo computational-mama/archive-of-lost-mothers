@@ -64,3 +64,16 @@ async function sendData(prompt1, prompt2) {
 
 
 // sendData(prompting1,prompting2)
+
+const audio = new Audio("/assets/audios/geminids for mother machines gb.mp3");
+
+const btn = document.getElementById('playb')
+btn.addEventListener("click", (event) => {
+    /* the audio is now playable; play it if permissions allow */
+    console.log("plays")
+    audio.paused ? btn.innerHTML = "🔊" : btn.innerHTML = "🔇"
+    return audio.paused ? audio.play() : audio.pause();
+
+  });
+  
+

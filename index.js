@@ -62,12 +62,10 @@ appExpress.post("/api", (request, response, next) => {
 
   // console.log("gptCall: "+gptResponse)
   var fullprompt =
-    "an archival photograph of a tired ((young)) indian (((mother))) with" +
+    "an archival photograph of a tired young indian mother with" +
     prompt1 +
     ", in the background there is a  mid-century " +
-    "(" +
     prompt2 +
-    ")" +
     "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print";
   // console.log(outputimage);
   outputimage
@@ -116,7 +114,7 @@ async function image(p1,p2) {
   const imgOPENAI = image.data[0].url
   return imgOPENAI
 }
-image();
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";

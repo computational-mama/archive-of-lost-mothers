@@ -71,8 +71,9 @@ appExpress.post("/api", (request, response, next) => {
   outputimage
     .then((data) => {
       var JSONdata = data
+
       writeNewPost(fullprompt, JSONdata, gptResponse);
-      // console.log(fullprompt, JSONdata);
+      console.log(JSONdata);
       // console.log(story_output)
       // response.send(gptResponse)
       response.send({
@@ -103,18 +104,44 @@ async function main(p1,p2) {
   return dataOPENAI
 }
 
-async function image(p1,p2) {
-  const image = await openai.images.generate({ model: "dall-e-3", prompt: "an archival photograph of a tired young indian mother with " +
-  p1 +
-  ", in the background there is " +
-  p2 +
-  "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print+", });
+// async function image(p1,p2) {
+//     const image = await openai.images.generate({ model: "dall-e-3", prompt: "an archival photograph of a tired young indian mother with " +
+//     p1 +
+//     ", in the background there is " +
+//     p2 +
+//     "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print+",response_format: "b64_json" });
 
-  console.log(image.data[0].url);
-  const imgOPENAI = image.data[0].url
+//   // console.log(image.data[0]);
+//   const imgOPENAI = image.data[0].b64_json
+//   return imgOPENAI
+// }
+
+async function image(p1,p2) {
+  const response = await fetch("https://api.gooey.ai/v2/CompareText2Img/", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + process.env.GOOEY_API_KEY,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({"text_prompt": "an archival photograph of a tired young indian mother with " +
+    p1 +
+    ", in the background there is " +
+    p2 +
+    "inside a bombay hospital, cinematic, film noir, grainy, ilford, hasselblad, albumen print+",
+    "selected_models": [
+      "dall_e_3"
+    ]}),
+  });
+
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+
+  const result = await response.json();
+  console.log(response.status, result);
+  const imgOPENAI = result.output.output_images.dall_e_3[0]
   return imgOPENAI
 }
-
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";

@@ -76,4 +76,15 @@ btn.addEventListener("click", (event) => {
 
   });
   
+// const yesbtn = document.getElementById('yesaudio')
 
+// yesbtn.addEventListener("click",(event)=>{
+//     audio.play()
+//     document.getElementById("popup").classList.add("hidden")
+// })
+
+// const nobtn = document.getElementById('noaudio')
+
+// nobtn.addEventListener("click",(event)=>{
+//     document.getElementById("popup").classList.add("hidden")
+// })
